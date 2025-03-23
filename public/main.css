@@ -1,0 +1,44 @@
+.light-theme {
+  --background-color: white;
+  --hr-background-color: #cdcdcd;
+}
+
+.dark-theme {
+  --background-color: #101014;
+  --hr-background-color: #535353;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.temp {
+  border: 2px solid black;
+  border-radius: 1cap;
+  width: 80%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  font-weight: 800;
+  margin: auto;
+}
+
+.katex-html {
+  display: none;
+}
+
+hr {
+  height: 1px; /* 粗细 */
+  background-color: var(--hr-background-color); /* 颜色 */
+  border: none;
+}
+
+.app {
+  background-color: var(--background-color) !important;
+  transition: background-color 0.33s, color 0.33s; /* 过渡效果 */
+  height: 100vh;
+}
