@@ -1,6 +1,6 @@
 <template>
   <div :class="`${isDark ? 'slogan-dark-theme' : 'slogan-light-theme'} main`">
-    <n-carousel autoplay  show-arrows style="margin-top:80px">
+    <n-carousel autoplay show-arrow trigger="hover" style="margin-top:80px">
       <img
         class="carousel-img"
         src="@/assets/pictures/carousel1.png"
