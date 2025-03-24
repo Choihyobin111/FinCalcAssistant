@@ -36,42 +36,76 @@
     <div class="title" >--欢迎使用SUFE金融计算助手！--</div>
     <div class="title" >--本工具旨在帮助您对金融理财与货币计算--</div>
     <div class="title" >--点击“功能大全” 开始使用吧！--</div>
-    <div class = "interval">
-      <div class="title" style="font-size:26px;font-weight:5px;">--关于我们--</div>
+   
+ <!-- 功能一览 -->
+ <div class = "interval">
+      <div class="title" style="font-size:26px;font-weight:5px;color:white">--功能一览--</div>
+    </div>
+    <div ref="info4" :class="`${isDark ? 'functionlist-darktheme' : 'functionlist-lighttheme'}`">
+      <n-card embedded title="投资/贷款计算">
+        <template #cover>
+          <n-icon :component="HandHoldingUsd" :size="150" class="tab-icon"/>
+        </template>
+      </n-card>
+      <n-card embedded title="现金流计算">
+        <template #cover>
+          <n-icon :component="ChartMultiple24Filled" :size="150" class="tab-icon"/>
+        </template>
+      </n-card>
+      <n-card embedded title="储蓄计算">
+        <template #cover>
+          <n-icon :component="Coins" :size="150" class="tab-icon"/>
+        </template>
+      </n-card>
+      <n-card embedded title="汇率转化">
+        <template #cover>
+          <n-icon :component="Bitcoin" :size="150" class="tab-icon"/>
+        </template>
+      </n-card>
+      <n-card embedded title="个税计算">
+        <template #cover>
+          <n-icon :component="BuildingGovernment24Filled" :size="150" class="tab-icon"/>
+        </template>
+      </n-card>
     </div>
 
 
+
     <div :class="`${isDark ? 'aboutus-darktheme' : 'aboutus-lighttheme'}`">
+      <div class = "interval">
+        <div class="title" style="font-size:26px;font-weight:5px;color:white">--关于我们--</div>
+      </div>
 
-
-      <div class="aboutus-item">
+      <div class="aboutus-item" ref="info1">
           <img ref="image" src="@/assets/pictures/Franctoryer.png" class="avatar">
           <n-space  vertical>
-          <div class="slogan-text" style="margin-left:300px;margin-top:50px">Franctoryer-朱力涛</div>
+          <div class="slogan-text" style="margin-left:200px;margin-top:50px">Franctoryer-朱力涛</div>
           <div class="slogan-sidetext" style="margin-left:300px">SUFE CS专业22级在读</div>
         </n-space>
       </div>
       <div class="interval2"></div>
-      <div class="aboutus-item">
+      <div class="aboutus-item" ref="info2">
           <n-space  vertical>
-          <div class="slogan-text" style="margin-left:300px;margin-top:50px">Choihyobin-陈雨乐</div>
-          <div class="slogan-sidetext" style="margin-left:300px">SUFE CS专业22级在读</div>
+          <div class="slogan-text" style="margin-top:50px">Choihyobin-陈雨乐</div>
+          <div class="slogan-sidetext">SUFE CS专业22级在读</div>
         </n-space>
         <img ref="image" src="@/assets/pictures/Choihyobin.png" class="avatar">
       </div>
       <div class="interval2"></div>
-      <div class="aboutus-item">
+      <div class="aboutus-item" ref="info3">
           <img ref="image" src="@/assets/pictures/738NGX.png" class="avatar">
           <n-space  vertical>
-          <div class="slogan-text" style="margin-left:300px;margin-top:50px">738NGX-吉宁岳</div>
-          <div class="slogan-sidetext" style="margin-left:300px">SUFE CS专业22级在读</div>
+          <div class="slogan-text" style="margin-left:200px;margin-top:50px">738NGX-吉宁岳</div>
+          <div class="slogan-sidetext" style="margin-left:200px">SUFE CS专业22级在读</div>
         </n-space>
       </div>
     </div>
 
+   
+
     <div style="height:50px;width:100%"></div>
-    <div class="footer">
-      <img ref="image" src="@/assets/pictures/keaidinie.jpg" class="avatar" style="height:100%;width:auto">-- 喜欢本网站的话可以喜欢一下或者投币支持哦！ --</div>
+    <div :class="`${isDark ? 'footer-darktheme' : 'footer-lighttheme'}`">
+      <img ref="image" src="@/assets/pictures/keaidinie.jpg" class="avatar" style="height:100%;width:auto">-- 喜欢本站的话可以喜欢一下或者投币支持哦！ --</div>
 
   </div>
 </template>
@@ -81,19 +115,91 @@ import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useThemeStore } from '@/stores/themeStore';
 import { gsap } from 'gsap';
-import { NSpace, NCarousel, NCard, NAvatar } from 'naive-ui';
+import { NSpace, NCarousel, NCard, NAvatar, NIcon } from 'naive-ui';
+import { ChartMultiple24Filled, BuildingGovernment24Filled } from "@vicons/fluent"
+import { Coins, Bitcoin, HandHoldingUsd } from "@vicons/fa"
 
 
 const { themeClass, isDark } = storeToRefs(useThemeStore());
 const slogan = ref(null);
+const info1 = ref(null);
+const info2 = ref(null);
+const info3 = ref(null);
+const info4 = ref(null);
 
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // 元素进入视口时触发动画
+          if (entry.target === info1.value) onInfoLoad1();
+          if (entry.target === info2.value) onInfoLoad2();
+          if (entry.target === info3.value) onInfoLoad3();
+        } else {
+          // 元素离开视口时重置状态
+          resetInfo(entry.target);
+        }
+      });
+    },
+    { threshold: 0.9 }
+  );
+  const observer2 = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target === info4.value) onInfoLoad4();
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  // 绑定观察器到所有元素
+  if (info1.value) observer.observe(info1.value);
+  if (info2.value) observer.observe(info2.value);
+  if (info3.value) observer.observe(info3.value);
+  if (info4.value) observer2.observe(info4.value);
+});
+
+const resetInfo = (target : any) => {
+  gsap.set(target, { opacity: 0, x: target === info2.value ? 100 : -100 }); // 重置到初始状态
+};
 const onImageLoad = () => {
   gsap.fromTo(
     slogan.value, 
     { opacity: 0,x:100, y: 0 }, // 初始状态
-    { opacity: 1,x:0, y: 0, duration: 1, ease: 'power2.out' } // 目标状态
+    { opacity: 1,x:0, y: 0, duration: 1.5, ease: 'power2.out' } // 目标状态
   );
 };
+const onInfoLoad1 = () => {
+  gsap.fromTo(
+    info1.value,
+    { opacity: 0,x:-100, y: 0 }, // 初始状态
+    { opacity: 1,x:0, y: 0, duration: 3, ease: 'power2.out' } // 目标状态
+  );
+};
+const onInfoLoad2 = () => {
+  gsap.fromTo(
+    info2.value,
+    { opacity: 0,x:100, y: 0 }, // 初始状态
+    { opacity: 1,x:0, y: 0, duration: 2, ease: 'power2.out' } // 目标状态
+  );
+};
+const onInfoLoad3 = () => {
+  gsap.fromTo(
+    info3.value,
+    { opacity: 0,x:-100, y: 0 }, // 初始状态
+    { opacity: 1,x:0, y: 0, duration: 1.5, ease: 'power2.out' } // 目标状态
+  )
+};
+const onInfoLoad4 = () => {
+  gsap.fromTo(
+    info4.value,
+    { opacity: 0,x:0, y: 100 }, // 初始状态
+    { opacity: 1,x:0, y: 0, duration: 1, ease: 'power2.out' } // 目标状态
+  )
+}
 </script>
 
 <style scoped>
@@ -153,7 +259,7 @@ const onImageLoad = () => {
 }
 .interval{
   height:8vh;
-  background-color: rgb(127, 146, 189);
+  background-color: rgb(55, 93, 182);
   width:100%;
   display:flex;
   align-items: center;
@@ -161,7 +267,7 @@ const onImageLoad = () => {
 }
 .interval2{
   height:2px;
-  background-color: rgb(88, 171, 180);
+  background-color: rgb(161, 187, 222);
   width:100%;
   display:flex;
   align-items: center;
@@ -172,15 +278,16 @@ const onImageLoad = () => {
   white-space: nowrap;
   font-size:20px;
 }
-.aboutus-lighttheme .aboutus-darktheme{
+.aboutus-lighttheme, .aboutus-darktheme{
   height:auto;
-  width:100%;
+  width:80%;
   display:flex;
   align-items: center;
   flex-direction: column;
+  
 }
 .aboutus-lighttheme{
-  background-color: rgb(240, 245, 249);
+  background-color: rgb(251, 251, 251);
 }
 .aboutus-darktheme{
   background-color: rgb(35, 38, 39);
@@ -188,23 +295,50 @@ const onImageLoad = () => {
 .aboutus-item{
   /* background-color: rgb(109, 180, 191); */
   width:100%;
-  height:300px;
+  height:250px;
   display:flex;
   align-items: center;
   flex-direction: row;
 }
 .avatar{
-  width:250px;
+  width:200px;
   margin:30px;
   margin-left:100px
 }
-.footer{
+.functionlist-lighttheme, .functionlist-darktheme{
+  display:flex;
+  flex-wrap: wrap;
+  margin-left:2.5%;
+  width:95%;
+  margin-top:0%;
+  margin-bottom:2.5%;
+  justify-content: space-around;
+  padding:50px;
+}
+.functionlist-lighttheme{
+  background-color:aliceblue
+}
+.n-card{
+  max-width:300px;
+  margin:20px;
+}
+.tab-icon{
+ margin-top:20px
+}
+.footer-lighttheme, .footer-darktheme{
   height:150px;
   width:100%;
-  background-color: rgb(127, 146, 189);
   display:flex;
   align-items:center;
   justify-content: center;
   font-size:30px;
+}
+.footer-lighttheme{
+  background-color: rgb(80, 106, 171);
+  color:whitesmoke
+}
+.footer-darktheme{
+  background-color: rgb(19, 35, 76);
+  color:whitesmoke
 }
 </style>
