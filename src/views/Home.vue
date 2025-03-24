@@ -126,6 +126,7 @@ const info1 = ref(null);
 const info2 = ref(null);
 const info3 = ref(null);
 const info4 = ref(null);
+const info4unshowed = ref(true)
 
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -148,7 +149,10 @@ onMounted(() => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          if (entry.target === info4.value) onInfoLoad4();
+          if (entry.target === info4.value && info4unshowed.value){ 
+            onInfoLoad4()
+            info4unshowed.value = false;  
+          };
         }
       });
     },
