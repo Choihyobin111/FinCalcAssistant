@@ -105,7 +105,7 @@
 
     <div style="height:50px;width:100%"></div>
     <div :class="`${isDark ? 'footer-darktheme' : 'footer-lighttheme'}`">
-      <img ref="image" src="@/assets/pictures/keaidinie.jpg" class="avatar" style="height:100%;width:auto">-- 喜欢本站的话可以喜欢一下或者投币支持哦！ --</div>
+      <img ref="image" src="@/assets/pictures/keaidinie.jpg" class="avatar" style="height:100%;width:auto"> 喜欢本站的话可以喜欢一下或者投币支持哦！ </div>
 
   </div>
 </template>
