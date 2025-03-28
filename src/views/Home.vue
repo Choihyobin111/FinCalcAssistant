@@ -33,13 +33,13 @@
         </n-space>
       </div>
     </div>
-    <div class="title" >--欢迎使用SUFE金融计算助手！--</div>
+    <!-- <div class="title" >--欢迎使用SUFE金融计算助手！--</div>
     <div class="title" >--本工具旨在帮助您对金融理财与货币计算--</div>
-    <div class="title" >--点击“功能大全” 开始使用吧！--</div>
+    <div class="title" >--点击“功能大全” 开始使用吧！--</div> -->
    
  <!-- 功能一览 -->
  <div class = "interval">
-      <div class="title" style="font-size:26px;font-weight:5px;color:white">--功能一览--</div>
+      <div class="title" style="font-size:26px;font-weight:5px">功能一览</div>
     </div>
     <div ref="info4" :class="`${isDark ? 'functionlist-darktheme' : 'functionlist-lighttheme'}`">
       <n-card embedded title="投资/贷款计算">
@@ -73,7 +73,7 @@
 
     <div :class="`${isDark ? 'aboutus-darktheme' : 'aboutus-lighttheme'}`">
       <div class = "interval">
-        <div class="title" style="font-size:26px;font-weight:5px;color:white">--关于我们--</div>
+        <div class="title" style="font-size:26px;font-weight:5px">关于我们</div>
       </div>
 
       <div class="aboutus-item" ref="info1">
@@ -143,7 +143,7 @@ onMounted(() => {
         }
       });
     },
-    { threshold: 0.9 }
+    { threshold: 0.1 }
   );
   const observer2 = new IntersectionObserver(
     (entries) => {
@@ -179,28 +179,28 @@ const onImageLoad = () => {
 const onInfoLoad1 = () => {
   gsap.fromTo(
     info1.value,
-    { opacity: 0,x:-100, y: 0 }, // 初始状态
+    { opacity: 0,x:-50, y: 0 }, // 初始状态
     { opacity: 1,x:0, y: 0, duration: 3, ease: 'power2.out' } // 目标状态
   );
 };
 const onInfoLoad2 = () => {
   gsap.fromTo(
     info2.value,
-    { opacity: 0,x:100, y: 0 }, // 初始状态
+    { opacity: 0,x:50, y: 0 }, // 初始状态
     { opacity: 1,x:0, y: 0, duration: 2, ease: 'power2.out' } // 目标状态
   );
 };
 const onInfoLoad3 = () => {
   gsap.fromTo(
     info3.value,
-    { opacity: 0,x:-100, y: 0 }, // 初始状态
+    { opacity: 0,x:-50, y: 0 }, // 初始状态
     { opacity: 1,x:0, y: 0, duration: 1.5, ease: 'power2.out' } // 目标状态
   )
 };
 const onInfoLoad4 = () => {
   gsap.fromTo(
     info4.value,
-    { opacity: 0,x:0, y: 100 }, // 初始状态
+    { opacity: 0,x:0, y: 50 }, // 初始状态
     { opacity: 1,x:0, y: 0, duration: 1, ease: 'power2.out' } // 目标状态
   )
 }
@@ -263,7 +263,7 @@ const onInfoLoad4 = () => {
 }
 .interval{
   height:8vh;
-  background-color: rgb(55, 93, 182);
+  background-color: rgb(188, 207, 250);
   width:100%;
   display:flex;
   align-items: center;
@@ -281,6 +281,7 @@ const onInfoLoad4 = () => {
   align-items: center;
   white-space: nowrap;
   font-size:20px;
+  position:relative;
 }
 .aboutus-lighttheme, .aboutus-darktheme{
   height:auto;
