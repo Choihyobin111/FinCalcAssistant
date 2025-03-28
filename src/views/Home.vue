@@ -84,7 +84,7 @@
         </n-space>
       </div>
       <div class="interval2"></div>
-      <div class="aboutus-item" ref="info2">
+      <div class="aboutus-item" ref="info2" style="margin-left:500px">
           <n-space  vertical>
           <div class="slogan-text" style="margin-top:50px">Choihyobin-陈雨乐</div>
           <div class="slogan-sidetext">SUFE CS专业22级在读</div>
