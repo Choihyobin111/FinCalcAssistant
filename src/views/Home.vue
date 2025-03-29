@@ -84,7 +84,7 @@
         </n-space>
       </div>
       <div class="interval2"></div>
-      <div class="aboutus-item" ref="info2" style="margin-left:500px">
+      <div class="aboutus-item" ref="info2">
           <n-space  vertical>
           <div class="slogan-text" style="margin-top:50px">Choihyobin-陈雨乐</div>
           <div class="slogan-sidetext">SUFE CS专业22级在读</div>
@@ -236,14 +236,14 @@ const onInfoLoad4 = () => {
   white-space: nowrap;  /* 防止换行 */
   transform: translateX(-10vw) translateY(-3vw); /* 向左移动10vw */
   margin-left: 100px;
-  padding-left: 100px;
+  padding-left: 80px;
 }
 .slogan-sidetext {
   font-size: 1.5vw;  /* 根据页面宽度自适应大小 */
   white-space: nowrap;  /* 防止换行 */
   transform: translateX(-10vw) translateY(-3vw); /* 向左移动10vw */
   margin-left: 100px;
-  padding-left: 100px;
+  padding-left: 80px;
 }
 
 .slogan-dark-theme {
@@ -304,6 +304,7 @@ const onInfoLoad4 = () => {
   display:flex;
   align-items: center;
   flex-direction: row;
+  justify-content:center;
 }
 .avatar{
   width:200px;
